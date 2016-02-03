@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+    <title>Buzzer</title>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        (function($){
+
+            function createCookie(name, value, days) {
+                var expires;
+
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toGMTString();
+                } else {
+                    expires = "";
+                }
+                document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+            }
+
+            function readCookie(name) {
+                var nameEQ = encodeURIComponent(name) + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+                }
+                return null;
+            }
+
+            function eraseCookie(name) {
+                createCookie(name, "", -1);
+            }
+
+
+            $( document ).ready(function() {
+                var socket = io();
+                var name = "Student"+guid();
+
+                function guid() {
+                    function s4() {
+                        return Math.floor((1 + Math.random()) * 0x10000)
+                                .toString(16)
+                                .substring(1);
+                    }
+                    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                            s4() + '-' + s4() + s4() + s4();
+                }
+
+                console.log("Generated Name: "+name);
+                $('span#name').text(name);
+                console.log("Emitting Join Event");
+                createCookie("name", name, 1);
+                socket.emit("join", name);
+
+                socket.on("update", function(msg) {
+                    console.log("Received Update", msg);
+                    $("#messages").append(msg);
+                });
+
+                socket.on("update-people", function(people) {
+                    console.log("Updating List of People", people);
+                    var txt = $("textarea#participants");
+                    $.each(people, function(clientid, name) {
+                        txt.val( txt.val() + name+"\n");
+                    });
+                });
+
+                socket.on("answerer_selected", function(name, question) {
+                    $("#messages").append(name+" is answering question "+question);
+                });
+
+                socket.on('buzz_success', function(msg){
+                    alert("You were first to buzz in!")
+                });
+
+                socket.on('buzz_failure', function(msg){
+                    alert("Sorry, someone else already buzzed in!")
+                });
+
+                $("#buzzer_form").submit(function( event ) {
+                    event.preventDefault();
+                    console.log("Buzzing In");
+                    socket.emit('buzzing', name);
+                });
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">SDLCpardy</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container" style="padding-top: 100px;">
+
+    <div class="row">
+        <div class="col-md-12">
+            <p>Your Name is: <strong><span id="name"></span></strong></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label for="participants">People Participating</label>
+            <textarea id="participants" style="width: 100%; min-height: 300px;"></textarea>
+        </div>
+
+        <div class="col-md-4">
+            <ul id="messages"></ul>
+        </div>
+
+        <div class="col-md-4">
+            <form id="buzzer_form" class="form">
+                <input id="submit" type="submit" value="Buzz In" class="btn-success" />
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+
+</body>
+</html>
