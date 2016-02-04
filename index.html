@@ -39,9 +39,12 @@
                     $("#messages").append(name+ " is now the active answerer");
                 });
 
-                socket.on("modify_points", function(correct, question) {
-                   //Update the point total here
-                    console.log("got modify points", correct, question);
+                socket.on("modify_points", function(people) {
+                    var txt = $("textarea#scores");
+                    txt.val("");
+                    $.each(people, function(clientid, score) {
+                        txt.val( txt.val() + clientid+":"+score+"\n");
+                    });
                 });
 
                 socket.on("client_question_answered", function(name, correct, question, col, row) {

@@ -8,6 +8,7 @@ var parsedJSON = require('./jeopardy.json');
 
 var counter = 1;
 var people = {};
+var points = {};
 var admin = null;
 var activeAvailable = false;
 var currentQuestion = null;
@@ -51,6 +52,7 @@ io.on("connection", function (socket) {
         counter++;
         console.log("New Client Joined: "+ name);
         people[socket.id] = name;
+        points[name] = 0;
         socket.emit("received_name", name);
         socket.emit("update", "You have connected to the server.");
         io.sockets.emit("update-people", people);
@@ -83,8 +85,12 @@ io.on("connection", function (socket) {
         if(socket.id==admin) {
             io.sockets.emit("client_question_answered", answerer, results[1].value, question, col, row);
             if(results[1].value) {
-                io.sockets[Object.keys(people)[currentAnswerer].id].emit("modify_points", results[1].value, question);
+                points[answerer] += question.jeopardyValue;
+            } else {
+                points[answerer] -= question.jeopardyValue;
             }
+
+            io.sockets.emit("modify_points", points);
             activeAvailable = true;
         }
     });
@@ -105,6 +111,12 @@ io.on("connection", function (socket) {
     socket.on("name_change", function(newName) {
         var oldName = people[socket.id];
         people[socket.id] = newName;
+
+        var index = points.indexOf(oldName);
+        if (index > -1) {
+            points.splice(index, 1);
+        }
+
         console.log(oldName+" has been renamed to "+newName);
         io.sockets.emit("update", oldName+" has been renamed to "+newName);
         io.sockets.emit("update-people", people);
