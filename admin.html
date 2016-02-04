@@ -17,9 +17,6 @@
 
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket = io();
-    </script>
 
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -41,12 +38,22 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="team-score" id="team-score-1"><a>Team 1: <span class="score">0</span></a></li>
-                <li class="team-score" id="team-score-2"><a>Team 2: <span class="score">0</span></a></li>
-                <li class="team-score" id="team-score-3"><a>Team 3: <span class="score">0</span></a></li>
-                <li class="team-score" id="team-score-4"><a>Team 4: <span class="score">0</span></a></li>
-                <li class="team-score" id="team-score-5"><a>Team 5: <span class="score">0</span></a></li>
-                <li class="team-score" id="team-score-6"><a>Team 6: <span class="score">0</span></a></li>
+                <li>
+                    <a>Answering the question: <span class="badge current_answerer"></span></a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <p class="navbar-btn">
+                        <a class="btn btn-info" id="reset-answerer-button">Remove Answerer</a>
+                    </p>
+                </li>
+                <li>
+                    <p class="navbar-btn">
+                        <a class="btn btn-success" id="open-question-button">Open Questions</a>
+                    </p>
+                </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -66,187 +73,87 @@
 
         <div class="row questions-0">
             <div class="col-md-2 col-md-offset-1 jeopardy-panel jeopardy-body" id="question-0-0">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="200"
-                   data-jeopardy-question="Analyse Question 1"
-                   data-jeopardy-answer="Analyse Answer 1">$ 200</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-0-1">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="200"
-                   data-jeopardy-question="Design Question 1"
-                   data-jeopardy-answer="Design Answer 1">$ 200</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-0-2">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="200"
-                   data-jeopardy-question="Develop Question 1"
-                   data-jeopardy-answer="Develop Answer 1">$ 200</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-0-3">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="200"
-                   data-jeopardy-question="Testing Question 1"
-                   data-jeopardy-answer="Testing Answer 1">$ 200</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-0-4">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="200"
-                   data-jeopardy-question="Finalize Question 1"
-                   data-jeopardy-answer="Finalize Answer 1">$ 200</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
         </div>
         <div class="row questions-1">
             <div class="col-md-2 col-md-offset-1 jeopardy-panel jeopardy-body" id="question-1-0">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="400"
-                   data-jeopardy-question="Analyse Question 2"
-                   data-jeopardy-answer="Analyse Answer 2">$ 400</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-1-1">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="400"
-                   data-jeopardy-question="Design Question 2"
-                   data-jeopardy-answer="Design Answer 2">$ 400</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-1-2">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="400"
-                   data-jeopardy-question="Develop Question 2"
-                   data-jeopardy-answer="Develop Answer 2">$ 400</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-1-3">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="400"
-                   data-jeopardy-question="Testing Question 2"
-                   data-jeopardy-answer="Testing Answer 2">$ 400</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-1-4">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="400"
-                   data-jeopardy-question="Finalize Question 2"
-                   data-jeopardy-answer="Finalize Answer 2">$ 400</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
         </div>
         <div class="row questions-2">
             <div class="col-md-2 col-md-offset-1 jeopardy-panel jeopardy-body" id="question-2-0">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="600"
-                   data-jeopardy-question="Analyse Question 3"
-                   data-jeopardy-answer="Analyse Answer 3">$ 600</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-2-1">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="600"
-                   data-jeopardy-question="Design Question 3"
-                   data-jeopardy-answer="Design Answer 3">$ 600</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-2-2">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="600"
-                   data-jeopardy-question="Develop Question 3"
-                   data-jeopardy-answer="Develop Answer 3">$ 600</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-2-3">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="600"
-                   data-jeopardy-question="Testing Question 3"
-                   data-jeopardy-answer="Testing Answer 3">$ 600</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-2-4">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="600"
-                   data-jeopardy-question="Finalize Question 3"
-                   data-jeopardy-answer="Finalize Answer 3">$ 600</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
         </div>
         <div class="row questions-3">
             <div class="col-md-2 col-md-offset-1 jeopardy-panel jeopardy-body" id="question-3-0">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="800"
-                   data-jeopardy-question="Analyse Question 4"
-                   data-jeopardy-answer="Analyse Answer 4">$ 800</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-3-1">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="800"
-                   data-jeopardy-question="Design Question 4"
-                   data-jeopardy-answer="Design Answer 4">$ 800</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-3-2">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="800"
-                   data-jeopardy-question="Develop Question 4"
-                   data-jeopardy-answer="Develop Answer 4">$ 800</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-3-3">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="800"
-                   data-jeopardy-question="Testing Question 4"
-                   data-jeopardy-answer="Testing Answer 4">$ 800</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-3-4">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="800"
-                   data-jeopardy-question="Finalize Question 4"
-                   data-jeopardy-answer="Finalize Answer 4">$ 800</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
         </div>
         <div class="row questions-4">
             <div class="col-md-2 col-md-offset-1 jeopardy-panel jeopardy-body" id="question-4-0">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="1000"
-                   data-jeopardy-question="Analyse Question 5"
-                   data-jeopardy-answer="Analyse Answer 5">$ 1000</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-4-1">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="1000"
-                   data-jeopardy-question="Design Question 5"
-                   data-jeopardy-answer="Design Answer 5">$ 1000</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-4-2">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="1000"
-                   data-jeopardy-question="Develop Question 5"
-                   data-jeopardy-answer="Develop Answer 5">$ 1000</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-4-3">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="1000"
-                   data-jeopardy-question="Testing Question 5"
-                   data-jeopardy-answer="Testing Answer 5">$ 1000</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
             <div class="col-md-2  jeopardy-panel jeopardy-body" id="question-4-4">
-                <a data-toggle="modal"
-                   data-target="#questionanswerholder"
-                   data-jeopardy-value="1000"
-                   data-jeopardy-question="Finalize Question 5"
-                   data-jeopardy-answer="Finalize Answer 5">$ 1000</a>
+                <a data-toggle="modal" data-target="#questionanswerholder"></a>
             </div>
         </div>
 
@@ -255,6 +162,7 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="answer-container">
+                            <a>Answering the question: <span class="badge current_answerer"></span></a>
                             <p class="answer"></p>
                             <span id="clock"></span>
                         </div>
@@ -263,16 +171,8 @@
                             <p class="question"></p>
 
                             <form id="doScore">
-                                <label> Team
-                                    <select class="select_team" name="team">
-                                        <option value="1">Team 1</option>
-                                        <option value="2">Team 2</option>
-                                        <option value="3">Team 3</option>
-                                        <option value="4">Team 4</option>
-                                        <option value="5">Team 5</option>
-                                        <option value="6">Team 6</option>
-                                    </select>
-                                </label>
+                                <label for="answerer">Answerer</label>
+                                <input type="text" name="answerer" id="answerer" />
 
                                 <div class="radio">
                                     <label>
