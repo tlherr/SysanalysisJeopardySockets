@@ -1,31 +1,61 @@
 {
   "questions": [
     {
-      "name": "Analyse",
+      "name": "Planning",
       "vals": [
         {
-          "question": "Analyse Question 1",
-          "answer": "Analyse Answer 1",
+          "question": "How does this phase usually begin?",
+          "answer": "Formal request to the IT department",
           "points": 200
         },
         {
-          "question": "Analyse Question 2",
-          "answer": "Analyse Answer 2",
+          "question": "Where can a systems request come from?",
+          "answer": "Top Manager, Planning Team, a department head or IT department",
           "points": 400
         },
         {
-          "question": "Analyse Question 3",
-          "answer": "Analyse Answer 3",
+          "question": "The purpose of this phase is to perform a __________ to evaluate an IT-related business opportunity or problem",
+          "answer": "What might a major systems request entail?",
           "points": 600
         },
         {
-          "question": "Analyse Question 4",
-          "answer": "Analyse Answer 4",
+          "question": "What might a major systems request entail?",
+          "answer": "New Information system or upgrading a current system",
           "points": 800
         },
         {
-          "question": "Analyse Question 5",
-          "answer": "Analyse Answer 5",
+          "question": "This type or process must continue in order to enter the analysis phase",
+          "answer": "Development",
+          "points": 1000
+        }
+      ]
+    },
+    {
+      "name": "Analysis",
+      "vals": [
+        {
+          "question": "What is the purpose of this phase?",
+          "answer": "Build a logical model of the new system",
+          "points": 200
+        },
+        {
+          "question": "The first step of this phase is ______________, where you investigate buisiness processes and coument what the new system must do to satisfy users",
+          "answer": "Requirements Modeling",
+          "points": 400
+        },
+        {
+          "question": "The deliverable for this phase is the __________?",
+          "answer": "Systems Requirement Document",
+          "points": 600
+        },
+        {
+          "question": "Performing fact-finding using techniques such as interviews, surveys, document review, observation and sampling are done to achieve an _______ of the system",
+          "answer": "Understanding",
+          "points": 800
+        },
+        {
+          "question": "Name one thing a system requirements document would describe?",
+          "answer": "management and user requirements, costs and benefits, and oudines alternative development strategies ",
           "points": 1000
         }
       ]
@@ -34,118 +64,88 @@
       "name": "Design",
       "vals": [
         {
-          "question": "Design Question 1",
-          "answer": "Design Answer 1",
+          "question": "What is the purpose of this phase?",
+          "answer": "To create a physical model that meets documented requirements",
           "points": 200
         },
         {
-          "question": "Design Question 2",
-          "answer": "Design Answer 2",
+          "question": "What type of interface is designed during this phase?",
+          "answer": "User Interface",
           "points": 400
         },
         {
-          "question": "Design Question 3",
-          "answer": "Design Answer 3",
+          "question": "The Logical Design is transformed into this",
+          "answer": "Program Modules and Code",
           "points": 600
         },
         {
-          "question": "Design Question 4",
-          "answer": "Design Answer 4",
+          "question": "What must be determined in this phase?",
+          "answer": "Application Architecture",
           "points": 800
         },
         {
-          "question": "Design Question 5",
-          "answer": "Design Answer 5",
+          "question": "Input from these two groups is critical at this stage of the process to avoid any misunderstanding about what the system will do, how much it will cost, review and approval",
+          "answer": "Management and Users",
           "points": 1000
         }
       ]
     },
     {
-      "name": "Develop",
+      "name": "Implementation",
       "vals": [
         {
-          "question": "Develop Question 1",
-          "answer": "Develop Answer 1",
+          "question": "What is the objective of this phase",
+          "answer": "completely functioning and documented information system ",
           "points": 200
         },
         {
-          "question": "Develop Question 2",
-          "answer": "Develop Answer 2",
+          "question": "If software is purchased, a systems analyst performs these tasks to implement a working system",
+          "answer": "Configure and perform any necessary modifications",
           "points": 400
         },
         {
-          "question": "Develop Question 3",
-          "answer": "Develop Answer 3",
+          "question": "This phase also includes an assessment called a _______ to determine whether the system operates properly and if cost benefits are within expectations",
+          "answer": "Systems Evaluation",
           "points": 600
         },
         {
-          "question": "Develop Question 4",
-          "answer": "Develop Answer 4",
+          "question": "What three final preparations are made before a system is ready for final use?",
+          "answer": "Converting data, training users and performing transition to the new system",
           "points": 800
         },
         {
-          "question": "Develop Question 5",
-          "answer": "Develop Answer 5",
+          "question": "Along with actually writing the software these things are also generated to help ensure functionality and understanding amongst other programmers and users",
+          "answer": "Tests and Documentation",
           "points": 1000
         }
       ]
     },
     {
-      "name": "Testing",
+      "name": "Support/Security",
       "vals": [
         {
-          "question": "Testing Question 1",
-          "answer": "Testing Answer 1",
+          "question": "Who must be supported?",
+          "answer": "End Users",
           "points": 200
         },
         {
-          "question": "Testing Question 2",
-          "answer": "Testing Answer 2",
+          "question": "The main objective of this phase is to _____ on the IT investment",
+          "answer": "Maximize return",
           "points": 400
         },
         {
-          "question": "Testing Question 3",
-          "answer": "Testing Answer 3",
+          "question": "Beyond the obvious external threats, what other types of threats do organizations have to deal with?",
+          "answer": "Internal Threats",
           "points": 600
         },
         {
-          "question": "Testing Question 4",
-          "answer": "Testing Answer 4",
+          "question": "A change in something like tax law would prompt this type of change to be required in an application",
+          "answer": "Maintenance",
           "points": 800
         },
         {
-          "question": "Testing Question 5",
-          "answer": "Testing Answer 5",
-          "points": 1000
-        }
-      ]
-    },
-    {
-      "name": "Finalize",
-      "vals": [
-        {
-          "question": "Finalize Question 1",
-          "answer": "Finalize Answer 1",
-          "points": 200
-        },
-        {
-          "question": "Finalize Question 2",
-          "answer": "Finalize Answer 2",
-          "points": 400
-        },
-        {
-          "question": "Finalize Question 3",
-          "answer": "Finalize Answer 3",
-          "points": 600
-        },
-        {
-          "question": "Finalize Question 4",
-          "answer": "Finalize Answer 4",
-          "points": 800
-        },
-        {
-          "question": "Finalize Question 5",
-          "answer": "Finalize Answer 5",
+          "question": "Business processes change rapidly. What do most systems require after several years of operation",
+          "answer": "Significant Updates or replacement",
           "points": 1000
         }
       ]
