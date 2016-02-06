@@ -27,6 +27,14 @@ function guid() {
         s4() + '-' + s4() + s4() + s4();
 }
 
+function getIndex(array, val) {
+    for(var key in array)
+    {
+        if(array[key]==val)
+            return key;
+    }
+}
+
 app.use(cookieParser());
 app.use(express.static('public'));
 
@@ -58,6 +66,7 @@ io.on("connection", function (socket) {
         io.sockets.emit("update-people", people);
     });
 
+    //Super secure totally not explotable function...
     socket.on("admin_joined", function() {
         admin = socket.id;
         people[socket.id] = "Admin";
@@ -82,6 +91,8 @@ io.on("connection", function (socket) {
     });
 
     socket.on("question_answered", function(results, answerer, question, col, row) {
+        console.log(people);
+        console.log(arguments);
         if(socket.id==admin) {
             io.sockets.emit("client_question_answered", answerer, results[1].value, question, col, row);
             if(results[1].value) {
@@ -89,6 +100,10 @@ io.on("connection", function (socket) {
             } else {
                 points[answerer] -= question.jeopardyValue;
             }
+
+            var answerer_socket_id = getIndex(people, answerer);
+            console.log(answerer_socket_id);
+            io.to(answerer_socket_id).emit("update_points", points[answerer]);
 
             io.sockets.emit("modify_points", points);
             activeAvailable = true;
@@ -112,10 +127,7 @@ io.on("connection", function (socket) {
         var oldName = people[socket.id];
         people[socket.id] = newName;
 
-        var index = points.indexOf(oldName);
-        if (index > -1) {
-            points.splice(index, 1);
-        }
+        //Should remove the old name
 
         console.log(oldName+" has been renamed to "+newName);
         io.sockets.emit("update", oldName+" has been renamed to "+newName);

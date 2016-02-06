@@ -49,10 +49,10 @@
             currentQuestion = a;
 
             var answerText = modal.find("p.answer");
-            answerText.text(a.data('jeopardy-answer'));
+            answerText.text(a.data('jeopardy-question'));
 
             var questionText = modal.find("p.question");
-            questionText.text(a.data('jeopardy-question'));
+            questionText.text(a.data('jeopardy-answer'));
 
             var pointValue = modal.find("input#point-value");
             pointValue.val(a.data('jeopardy-value'));

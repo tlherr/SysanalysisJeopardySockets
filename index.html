@@ -16,6 +16,10 @@
 
             $( document ).ready(function() {
                 var socket = io();
+                var console = $("#messages");
+                console.updateText = function(message) {
+                    $("#messages").append(message+"\n");
+                };
 
                 socket.emit("joined");
 
@@ -24,7 +28,7 @@
                 });
 
                 socket.on("update", function(msg) {
-                    $("#messages").append(msg+"\n");
+                    console.updateText(msg);
                 });
 
                 socket.on("update-people", function(people) {
@@ -36,7 +40,7 @@
                 });
 
                 socket.on("answerer_selected", function(name) {
-                    $("#messages").append(name+ " is now the active answerer");
+                    console.updateText(name+ " is now the active answerer");
                 });
 
                 socket.on("modify_points", function(people) {
@@ -49,20 +53,28 @@
 
                 socket.on("client_question_answered", function(name, correct, question, col, row) {
                     $("#question-"+col+"-"+row).addClass("disabled");
-                    console.log("Question was answered!", name, correct, question);
+                    console.updateText(name+ " answered a question!");
                 });
 
-                socket.on('buzz_success', function(msg) {
+                socket.on('buzz_success', function() {
+                    console.updateText("You are now the active answerer!");
                     alert("You are now the active answerer!");
                 });
 
-                socket.on('buzz_failure', function(msg) {
+                socket.on('buzz_failure', function() {
+                    console.updateText("Sorry, no questions are currently available to answer");
                     alert("Sorry, no questions are currently available to answer");
                 });
 
+                socket.on('update_points', function(points) {
+                    console.updateText("Your current points are now: "+points);
+                    $('#current_score').val(points);
+                });
+
                 $(".selectable-question").click(function(event) {
-                    var question = $(this);
                     event.preventDefault();
+                    var question = $(this);
+                    console.updateText("Attempting to buzz in for question " +question.data('question'));
                     socket.emit('buzzing', question.data('col'), question.data('question'));
                 });
 
@@ -109,7 +121,7 @@
                 <label for="name">Your Name is: <input type="text" id="name"></label>
                 <input id="change_name" type="submit" value="Change Name" class="btn-success" />
                 <label for="current_score">Current Score</label>
-                <input type="number" disabled id="current_score" />
+                <input type="number" disabled id="current_score" value="0" />
             </form>
         </div>
     </div>
@@ -224,8 +236,8 @@
     </div>
 
     <div class="row">
-        <label for="message">Console</label>
-        <textarea id="message" style="width: 100%; min-height: 300px;"></textarea>
+        <label for="messages">Console</label>
+        <textarea id="messages" style="width: 100%; min-height: 300px;"></textarea>
     </div>
 
 </div>

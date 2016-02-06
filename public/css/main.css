@@ -281,6 +281,10 @@ textarea {
     }
 }
 
+body.admin-page {
+    background-color: black;
+}
+
 
 @font-face {
     font-family: 'gyparodyheavy';
